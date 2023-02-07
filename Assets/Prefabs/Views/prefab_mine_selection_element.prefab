@@ -64,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: {fileID: 7209974273547467000}
   _description: {fileID: 7209974273650932129}
-  _goToMineButton: {fileID: 7209974273660043309}
+  _switchMineButton: {fileID: 7209974273660043309}
 --- !u!1 &7209974273103416687
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 7209974273660043309}
   - component: {fileID: 7209974273660043308}
   m_Layer: 0
-  m_Name: btn_go
+  m_Name: btn_switch_mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

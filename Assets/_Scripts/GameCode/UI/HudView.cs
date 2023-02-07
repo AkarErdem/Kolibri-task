@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GameCode.UI
 {
@@ -8,6 +9,7 @@ namespace GameCode.UI
         [SerializeField] private TMP_Text _cashAmount;
         [SerializeField] private GameObject _tooltip;
         [SerializeField] private MineSelectionView _mineSelectionView;
+        [SerializeField] private Button _mapButton;
         
         public double CashAmount
         {
@@ -20,5 +22,7 @@ namespace GameCode.UI
         }
         
         public MineSelectionView MineSelectionView => _mineSelectionView;
+        
+        public Button MapButton => _mapButton;
     }
 }

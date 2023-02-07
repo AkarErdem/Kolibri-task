@@ -91,6 +91,7 @@
      <Compile Include="Assets\_Scripts\GameCode\UI\MineSelectionElementView.cs" />
      <Compile Include="Assets\_Scripts\GameCode\Mineshaft\IMineshaftFactory.cs" />
      <Compile Include="Assets\_Scripts\GameCode\Warehouse\WarehouseModel.cs" />
+     <Compile Include="Assets\_Scripts\GameCode\UI\LoadingScreenView.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

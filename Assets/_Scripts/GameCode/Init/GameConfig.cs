@@ -17,13 +17,13 @@ namespace GameCode.Init
         [SerializeField] private bool _encryptDataFile;
         [SerializeField] private string _dataFileName;
         
-        public List<MineConfig> MineConfigs => new(_mineConfigs);
-        public bool EncryptDataFile => _encryptDataFile;
+        public MineData StartingMineData => _mineConfigs[_activeMineConfigIndex].StartingMineData;
+        public List<MineConfig> MineConfigs => _mineConfigs;
         
+        public int ActiveMineConfigIndex => _activeMineConfigIndex;
+        public bool EncryptDataFile => _encryptDataFile;
         public string DataFileName => _dataFileName;
         public string DataDirPath => Application.persistentDataPath;
-        
-        public MineData StartingMineData => _mineConfigs[_activeMineConfigIndex].StartingMineData;
         
         public IMineshaftConfig MineshaftConfig => _mineConfigs[_activeMineConfigIndex].MineshaftConfig;
         public IWorkerConfig MineshaftWorkerConfig => _mineConfigs[_activeMineConfigIndex].MineshaftWorkerConfig;

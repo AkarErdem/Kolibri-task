@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace GameCode.UI
@@ -8,10 +9,10 @@ namespace GameCode.UI
     {
         [SerializeField] private TMP_Text _name;
         [SerializeField] private TMP_Text _description;
-        [SerializeField] private Button _goToMineButton;
+        [SerializeField] private Button _switchMineButton;
         
         public TMP_Text Name => _name;
         public TMP_Text Description => _description;
-        public Button GoToMineButton => _goToMineButton;
+        public Button SwitchMineButton => _switchMineButton;
     }
 }

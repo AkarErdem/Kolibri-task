@@ -1,6 +1,7 @@
 ﻿using GameCode.Finance;
 using GameCode.Tutorial;
 using UniRx;
+using UniRx.Triggers;
 
 namespace GameCode.UI
 {
@@ -23,25 +24,40 @@ namespace GameCode.UI
                 .Subscribe(UpdateTooltipVisibility)
                 .AddTo(disposable);
 
-            int mineIndex = 0;
-            foreach (var mineSelectionElementView in _view.MineSelectionView.MineSelectionElementViews)
+            for (var i = 0; i < _view.MineSelectionView.MineSelectionElementViews.Count; i++)
             {
-                mineSelectionElementView.GoToMineButton.
-                    OnClickAsObservable().
-                    Subscribe(_ =>
+                var GoToMineButton = _view.MineSelectionView.MineSelectionElementViews[i].SwitchMineButton;
+                GoToMineButton
+                    .OnClickAsObservable()
+                    .Subscribe(_ =>
                     {
-                        SwitchMine(mineIndex);
+                        UpdateMineSelectionVisibility(false);
+                        SwitchMine(i);
                     })
                     .AddTo(disposable);
-                mineIndex++;
             }
+
+            view.MapButton
+                .OnClickAsObservable()
+                .Subscribe(_ => UpdateMineSelectionVisibility(true))
+                .AddTo(disposable);
+
+            view.MineSelectionView.Background
+                .OnPointerDownAsObservable()
+                .Subscribe(_ => UpdateMineSelectionVisibility(false))
+                .AddTo(disposable);
         }
         
         private void SwitchMine(int mineIndex)
         {
             _model.SwitchMine(mineIndex);
         }
-
+        
+        private void UpdateMineSelectionVisibility(bool shouldShowMineSelection)
+        {
+            _view.MineSelectionView.gameObject.SetActive(shouldShowMineSelection);
+        }
+        
         private void UpdateTooltipVisibility(bool shouldShowTooltip)
         {
             _view.TooltipVisible = shouldShowTooltip;

@@ -12,25 +12,62 @@ namespace GameCode.DataPersistence
     [System.Serializable]
     public class GameData
     {
-        private readonly Data _data;
         private readonly GameConfig _gameConfig;
+        private Data _data;
         
         public Data Data => _data;
-        public MineData ActiveMineData => _data.MineDataList[0]; // _data.MineDataList[_data.ActiveMineIndex];
-
-        public GameData(GameConfig gameConfig, Data data)
+        
+        public int ActiveMineIndex
         {
-            _data = data;
-            _gameConfig = gameConfig;
+            get => _data.UserPreferencesData.ActiveMineIndex;
+            set => _data.UserPreferencesData.ActiveMineIndex = value;
+        }
+        
+        public MineData ActiveMineData
+        {
+            get
+            {
+                if (ActiveMineIndex >= _data.MineDataList.Count)
+                    ActiveMineIndex = 0;
+                return _data.MineDataList[ActiveMineIndex];
+            }
         }
         
         public GameData(GameConfig gameConfig)
         {
             _gameConfig = gameConfig;
-            
+            CreateData();
+        }
+        
+        public GameData(GameConfig gameConfig, Data data)
+        {
+            _data = data;
+            _gameConfig = gameConfig;
+
+            // If given data is invalid
+            if (data == null || data.MineDataList == null || data.MineDataList.Count == 0)
+            {
+                CreateData();
+            }
+            // If new mines added to the game
+            else if (data.MineDataList.Count > _gameConfig.MineConfigs.Count)
+            {
+                int startIndex = _data.MineDataList.Count;
+                for (var i = startIndex; i < _gameConfig.MineConfigs.Count; i++)
+                {
+                    _data.MineDataList.Add(CreateMineData(i));
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Create default data
+        /// </summary>
+        private void CreateData()
+        {
             var activeMineIndex = 0;
             var mineDataList = new List<MineData>();
-            for (var i = 0; i < gameConfig.MineConfigs.Count; i++)
+            for (var i = 0; i < _gameConfig.MineConfigs.Count; i++)
             {
                 mineDataList.Add(CreateMineData(i));
             }
@@ -40,13 +77,16 @@ namespace GameCode.DataPersistence
                 UserPreferencesData = new UserPreferencesData() { ActiveMineIndex = activeMineIndex }
             };
         }
-
+        
+        /// <summary>
+        /// Create a deep copy of mine data via game config
+        /// </summary>
         private MineData CreateMineData(int mineConfigIndex)
         {
             return _gameConfig.MineConfigs[mineConfigIndex].StartingMineData.Copy();
         }
     }
-        
+    
     [System.Serializable]
     public class Data
     {
@@ -62,7 +102,6 @@ namespace GameCode.DataPersistence
         public ElevatorCreationData ElevatorCreationData;
         public List<MineshaftCreationData> MineshaftCreationData;
     }
-
     [System.Serializable]
     public class UserPreferencesData
     {

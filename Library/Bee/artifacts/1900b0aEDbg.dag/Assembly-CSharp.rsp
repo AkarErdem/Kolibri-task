@@ -377,6 +377,7 @@
 "Assets/_Scripts/GameCode/UI/HudController.cs"
 "Assets/_Scripts/GameCode/UI/HudModel.cs"
 "Assets/_Scripts/GameCode/UI/HudView.cs"
+"Assets/_Scripts/GameCode/UI/LoadingScreenView.cs"
 "Assets/_Scripts/GameCode/UI/MineSelectionElementView.cs"
 "Assets/_Scripts/GameCode/UI/MineSelectionView.cs"
 "Assets/_Scripts/GameCode/Utilities/ObjectExtensions.cs"
