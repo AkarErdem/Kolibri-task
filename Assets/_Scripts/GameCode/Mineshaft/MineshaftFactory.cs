@@ -75,7 +75,6 @@ namespace GameCode.Mineshaft
             }
             
             data.ActiveMineData.MineshaftCreationData = new List<MineshaftCreationData>(mineshaftCreationDataList);
-            Debug.Log($"Mineshafts saved.");
         }
     }
 }

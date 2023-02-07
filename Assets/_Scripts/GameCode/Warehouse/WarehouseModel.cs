@@ -50,7 +50,6 @@ namespace GameCode.Warehouse
         public void OnSave(ref GameData data)
         {
             data.ActiveMineData.WarehouseCreationData.Level = _level.Value;
-            Debug.Log("Warehouse saved");
         }
     }
     

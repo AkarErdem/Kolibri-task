@@ -51,8 +51,6 @@ namespace GameCode.DataPersistence
         /// </summary>
         public void SaveGame()
         {
-            Debug.Log(this._gameData.ActiveMineData.FinanceCreationData.Money);
-            
             // Pass the data to other scripts so they can update it
             foreach (var dataPersistenceObj in _saveableObjects)
             {
@@ -60,12 +58,10 @@ namespace GameCode.DataPersistence
             }
             // Save that data to a file using the data handler
             _fileDataHandler.Save(this._gameData.Data);
-            
-            Debug.Log(this._gameData.ActiveMineData.FinanceCreationData.Money);
         }
 
         /// <summary>
-        /// Register the dataPersistence object
+        /// Register the saveable object
         /// </summary>
         public void RegisterSaveable(ISaveable saveable)
         {

@@ -74,7 +74,6 @@ namespace GameCode.Elevator
         {
             data.ActiveMineData.ElevatorCreationData.Level = Level.Value;
             data.ActiveMineData.ElevatorCreationData.StashAmount = StashAmount.Value;
-            Debug.Log("Elevator saved");
         }
     }
     

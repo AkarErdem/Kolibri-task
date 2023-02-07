@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6e029cee-c019-a1eb-abfb-39564155a720}</ProjectGuid>
+    <ProjectGuid>{fda61465-c431-3e60-7927-a0a25ba5e4ca}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -51,6 +51,7 @@
      <Compile Include="Assets\_Scripts\GameCode\Worker\WorkerView.cs" />
      <Compile Include="Assets\_Scripts\GameCode\Elevator\ElevatorView.cs" />
      <Compile Include="Assets\_Scripts\GameCode\Finance\FinanceModel.cs" />
+     <Compile Include="Assets\_Scripts\GameCode\Utilities\ObjectExtensions.cs" />
      <Compile Include="Assets\_Scripts\GameCode\Mineshaft\IMineshaftConfig.cs" />
      <Compile Include="Assets\_Scripts\GameCode\Worker\WorkerModel.cs" />
      <Compile Include="Assets\_Scripts\GameCode\Mineshaft\MineshaftController.cs" />
@@ -90,7 +91,6 @@
      <Compile Include="Assets\_Scripts\GameCode\UI\MineSelectionElementView.cs" />
      <Compile Include="Assets\_Scripts\GameCode\Mineshaft\IMineshaftFactory.cs" />
      <Compile Include="Assets\_Scripts\GameCode\Warehouse\WarehouseModel.cs" />
-     <Compile Include="Assets\_Scripts\GameCode\Utilities\ObjectExtensions.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -98,6 +98,7 @@
      <Folder Include="Assets\TextMesh Pro\Resources\Sprite Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <Folder Include="Assets\_Scripts\GameCode\Worker" />
+     <Folder Include="Assets\Prefabs\Views" />
      <Folder Include="Assets\_Scripts\GameCode\Finance" />
      <Folder Include="Assets\_Scripts\GameCode\Mineshaft" />
      <Folder Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials" />
@@ -108,6 +109,7 @@
      <None Include="Assets\csc.rsp" />
      <Folder Include="Assets\_Scripts\GameCode\Elevator" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <Folder Include="Assets\Prefabs\UI" />
      <Folder Include="Assets\_Scripts\GameCode\Warehouse" />
      <Folder Include="Assets\TextMesh Pro" />
      <Folder Include="Assets\Configs\MineshaftConfig" />
@@ -136,6 +138,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+     <Folder Include="Assets\Prefabs\Environment" />
      <Folder Include="Assets\_Scripts" />
      <Folder Include="Assets\_Scripts\GameCode\SceneManagement" />
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
@@ -386,10 +389,10 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.13f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
      </Reference>
      <Reference Include="Newtonsoft.Json">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Assets\Plugins\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Assets\Plugins\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll</HintPath>
      </Reference>
      <Reference Include="DOTween">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.13f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -758,58 +761,58 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.13f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VSCode.Editor">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.Tilemap.Editor">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualStudio.Editor">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline.Editor">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.Sprite.Editor">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Rider.Editor">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.UI">
-     <HintPath>C:\Unity Projeleri\Kolirbi-task\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     <HintPath>C:\Unity Projeleri\Kolibri-task\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UniRx.csproj">
-      <Project>{fc94bd10-5641-57fd-f4d8-d935f835b32c}</Project>
+      <Project>{1792b6eb-fec8-f608-de60-8acb29bf96ab}</Project>
       <Name>UniRx</Name>
     </ProjectReference>
     <ProjectReference Include="EditprCools.csproj">
-      <Project>{cbd44ea3-6ca7-19cf-fa4f-7de7c24fc281}</Project>
+      <Project>{d5dee076-5f80-5108-8ffd-07313bb088d3}</Project>
       <Name>EditprCools</Name>
     </ProjectReference>
     <ProjectReference Include="DOTween.Modules.csproj">
-      <Project>{2c873ee1-4af0-35e1-92cf-8cb469685705}</Project>
+      <Project>{23d85322-08cd-5297-0858-24d2551738a5}</Project>
       <Name>DOTween.Modules</Name>
     </ProjectReference>
     <ProjectReference Include="UnityUIExtensions.csproj">
-      <Project>{1fbb041f-c1f6-d003-38f2-ac6ca9324428}</Project>
+      <Project>{d444006e-bba7-6213-0398-e4f1c348c833}</Project>
       <Name>UnityUIExtensions</Name>
     </ProjectReference>
     <ProjectReference Include="UnityUIExtensions.editor.csproj">
-      <Project>{0bc02926-0851-6046-6be1-aaa09becae79}</Project>
+      <Project>{0b690d0e-af3b-7b29-b5a2-e13a74a96e46}</Project>
       <Name>UnityUIExtensions.editor</Name>
     </ProjectReference>
   </ItemGroup>
