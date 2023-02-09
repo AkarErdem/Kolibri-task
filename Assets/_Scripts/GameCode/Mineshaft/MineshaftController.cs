@@ -1,6 +1,7 @@
 ﻿using GameCode.Init;
 using GameCode.Worker;
 using UniRx;
+using UnityEngine;
 
 namespace GameCode.Mineshaft
 {
@@ -19,7 +20,9 @@ namespace GameCode.Mineshaft
             _view = view;
             _model = model;
             _mineshaftFactory = mineshaftFactory;
-            
+
+            if (creationData.Worker.LocalPosition != Vector2.zero)
+                _view.WorkerView.LocalPosition = creationData.Worker.LocalPosition;
             _workerModel = new WorkerModel(creationData.Worker, model, gameConfig.MineshaftWorkerConfig, disposable);
             new MineshaftWorkerController(view, model, _workerModel, disposable);
             
@@ -66,7 +69,8 @@ namespace GameCode.Mineshaft
                     StashAmount = 0,
                     Worker = new WorkerCreationData()
                     {
-                        CarryingAmount = 0
+                        CarryingAmount = 0,
+                        LocalPosition = _view.WorkerView.LocalPosition
                     }
                 }
             );

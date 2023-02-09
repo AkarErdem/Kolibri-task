@@ -37,10 +37,10 @@ namespace GameCode.DataPersistence
             _data = data;
             _gameConfig = gameConfig;
 
-            // If given data is invalid
+            // If no data has found
             if (_data == null || _data.MineDataList == null || _data.MineDataList.Count == 0)
             {
-                Debug.Log("Given save data is invalid. Creating a new one.");
+                Debug.Log("No save data has found. Creating a new one.");
                 CreateData();
             }
             // If new mines added to the game
@@ -56,8 +56,7 @@ namespace GameCode.DataPersistence
             // If save file has more mine than it should be
             else if (_data.MineDataList.Count > _gameConfig.MineConfigs.Count)
             {
-                Debug.Log($"Save data has more mine than it should be.\n" +
-                          $"Removing the extra mines.");
+                Debug.Log($"Save data has more mine than it should be. Removing the extra mines.");
 
                 int startIndex = _data.MineDataList.Count - 1;
                 for (var i = startIndex; i >= _gameConfig.MineConfigs.Count; i--)

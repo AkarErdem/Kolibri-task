@@ -17,5 +17,11 @@ namespace GameCode.Worker
             get => transform.position;
             set => transform.position = value;
         }
+
+        public Vector2 LocalPosition
+        {
+            get => transform.localPosition;
+            set => transform.localPosition = value;
+        }
     }
 }

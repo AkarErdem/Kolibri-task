@@ -35,16 +35,19 @@ MonoBehaviour:
         Level: 1
         Worker:
           CarryingAmount: 0
+          LocalPosition: {x: 0, y: 0}
       ElevatorCreationData:
         Level: 1
         StashAmount: 0
         Worker:
           CarryingAmount: 0
+          LocalPosition: {x: 0, y: 0}
       MineshaftCreationData:
       - Level: 1
         StashAmount: 0
         Worker:
           CarryingAmount: 0
+          LocalPosition: {x: -0.85, y: -1.04}
   - MineName: Mine 2
     MineDescription: 'So exciting: A second mine!'
     MineshaftConfig: {fileID: 11400000, guid: 5539b827b23a6964999cb4e52b988340, type: 2}
@@ -66,18 +69,21 @@ MonoBehaviour:
         Level: 1
         Worker:
           CarryingAmount: 0
+          LocalPosition: {x: 0, y: 0}
       ElevatorCreationData:
         Level: 1
         StashAmount: 0
         Worker:
           CarryingAmount: 0
+          LocalPosition: {x: 0, y: 0}
       MineshaftCreationData:
       - Level: 1
         StashAmount: 0
         Worker:
           CarryingAmount: 0
+          LocalPosition: {x: -0.85, y: -1.04}
   _sceneLoadCooldownTime: 0.4
   _mineConfigIndex: 0
-  _encryptDataFile: 0
+  _encryptDataFile: 1
   _encryptionCodeWord: Kolibri123
   _dataFileName: game.savedata

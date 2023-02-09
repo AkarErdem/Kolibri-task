@@ -42,6 +42,9 @@ namespace GameCode.Mineshaft
             var mineshaftView = Object.Instantiate(_config.MineshaftConfig.MineshaftPrefab, mineshaftPosition, Quaternion.identity);
             var mineshaftController = new MineshaftController(creationData, mineshaftView, mineshaftModel, this, _config, _disposable);
 
+            if (creationData.Worker.LocalPosition != Vector2.zero)
+                mineshaftView.WorkerView.LocalPosition = creationData.Worker.LocalPosition;
+
             _mvcCollection.Register(mineshaftNumber, mineshaftModel, mineshaftView, mineshaftController);
         }
         
@@ -70,7 +73,8 @@ namespace GameCode.Mineshaft
                     StashAmount = mineshaftModel.StashAmount.Value,
                     Worker = new WorkerCreationData()
                     {
-                        CarryingAmount = _mvcCollection.GetController(key).WorkerModel.CarryingAmount.Value
+                        CarryingAmount = _mvcCollection.GetController(key).WorkerModel.CarryingAmount.Value,
+                        LocalPosition = _mvcCollection.GetView(key).WorkerView.LocalPosition
                     }
                 });
             }

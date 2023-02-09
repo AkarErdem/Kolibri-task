@@ -1,7 +1,5 @@
 using GameCode.Init;
-using GameCode.SceneManagement;
 using UniRx;
-using UnityEngine;
 
 namespace GameCode.DataPersistence
 {
@@ -22,10 +20,12 @@ namespace GameCode.DataPersistence
 
             // Check the active mine index
             int activeMineIndex = model.GameData.ActiveMineIndex;
+
             if (activeMineIndex < 0)
                 activeMineIndex = 0;
             else if (activeMineIndex >= gameConfig.MineConfigs.Count)
                 activeMineIndex = gameConfig.MineConfigs.Count - 1;
+
             gameConfig.MineConfigIndex = activeMineIndex;
             model.GameData.ActiveMineIndex = activeMineIndex;
         }

@@ -3,19 +3,24 @@ using GameCode.Elevator;
 using GameCode.Init;
 using GameCode.Worker;
 using UniRx;
+using UnityEngine;
 
 namespace GameCode.Warehouse
 {
     public class WarehouseController : ISaveable
     {
         private readonly WarehouseModel _model;
+        private readonly WarehouseView _view;
         private readonly WorkerModel _workerModel;
 
         public WarehouseController(WarehouseCreationData creationData, WarehouseView view, WarehouseModel model, ElevatorModel elevatorModel,
-            GameConfig config, CompositeDisposable disposable, ISaveModel saveModel)
+                                   GameConfig config, CompositeDisposable disposable, ISaveModel saveModel)
         {
             _model = model;
+            _view = view;
 
+            if (creationData.Worker.LocalPosition != Vector2.zero)
+                view.WorkerView.LocalPosition = creationData.Worker.LocalPosition;
             _workerModel = new WorkerModel(creationData.Worker, model, config.WarehouseWorkerConfig, disposable);
             new WarehouseWorkerController(view, model, _workerModel, elevatorModel, disposable);
 
@@ -48,7 +53,8 @@ namespace GameCode.Warehouse
             data.ActiveMineData.WarehouseCreationData.Worker =
                 new WorkerCreationData()
                 {
-                    CarryingAmount = _workerModel.CarryingAmount.Value
+                    CarryingAmount = _workerModel.CarryingAmount.Value,
+                    LocalPosition = _view.WorkerView.LocalPosition
                 };
         }
     }

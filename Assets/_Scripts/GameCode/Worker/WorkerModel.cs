@@ -1,4 +1,5 @@
 ﻿using GameCode.GameArea;
+using UnityEngine;
 using UniRx;
 
 namespace GameCode.Worker
@@ -27,5 +28,6 @@ namespace GameCode.Worker
     public struct WorkerCreationData
     {
         public double CarryingAmount;
+        public Vector2 LocalPosition;
     }
 }

@@ -12,7 +12,7 @@ namespace GameCode.Init
         [Header("Configuration")]
         [SerializeField] private List<MineConfig> _mineConfigs;
         [SerializeField] private float _sceneLoadCooldownTime;
-        [SerializeField] private int _mineConfigIndex;
+        private int _mineConfigIndex;
         
         [Header("Save Data")]
         [SerializeField] private bool _encryptDataFile;
@@ -31,7 +31,10 @@ namespace GameCode.Init
         public float SceneLoadCooldownTime => _sceneLoadCooldownTime;
 
         public bool EncryptDataFile => _encryptDataFile;
+
         public string EncryptionCodeWord => _encryptionCodeWord;
+        public string MineName => _mineConfigs[_mineConfigIndex].MineName;
+        public string DataDirPath => Application.persistentDataPath;
         public string DataFileName
         {
             get 
@@ -41,9 +44,6 @@ namespace GameCode.Init
                 return _dataFileName;
             }
         }
-        public string DataDirPath => Application.persistentDataPath;
-        
-        public string MineName => _mineConfigs[_mineConfigIndex].MineName;
 
         public IMineshaftConfig MineshaftConfig => _mineConfigs[_mineConfigIndex].MineshaftConfig;
         public IWorkerConfig MineshaftWorkerConfig => _mineConfigs[_mineConfigIndex].MineshaftWorkerConfig;
