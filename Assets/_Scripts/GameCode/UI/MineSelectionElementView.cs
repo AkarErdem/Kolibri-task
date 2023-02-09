@@ -11,8 +11,14 @@ namespace GameCode.UI
         [SerializeField] private TMP_Text _description;
         [SerializeField] private Button _switchMineButton;
         
-        public TMP_Text Name => _name;
-        public TMP_Text Description => _description;
+        public string Name
+        {
+            set => _name.SetText($"{value}");
+        }
+        public string Description
+        {
+            set => _description.SetText($"{value}");
+        }
         public Button SwitchMineButton => _switchMineButton;
     }
 }

@@ -34,6 +34,7 @@ namespace GameCode.Mineshaft
             model.StashAmount
                 .Subscribe(amount => view.StashAmount = amount.ToString("F0"))
                 .AddTo(disposable);
+
             _workerModel.CarryingCapacity
                 .Subscribe(capacity => view.AreaUiCanvasView.CarryingCapacity = capacity.ToString("F0"))
                 .AddTo(disposable);
@@ -43,10 +44,10 @@ namespace GameCode.Mineshaft
                 .AddTo(disposable);
 
             view.NextShaftView.Cost = model.NextShaftPrice.ToString("F0");
+
             var canBuyNextShaft = model.CanBuyNextShaft.ToReactiveCommand();
             canBuyNextShaft.BindTo(view.NextShaftView.Button).AddTo(disposable);
-            canBuyNextShaft.Subscribe(_ => BuyNextShaft())
-                .AddTo(disposable);
+            canBuyNextShaft.Subscribe(_ => BuyNextShaft()).AddTo(disposable);
         }
 
         private void Upgrade()

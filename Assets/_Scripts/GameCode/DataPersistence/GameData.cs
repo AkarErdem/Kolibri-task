@@ -22,17 +22,10 @@ namespace GameCode.DataPersistence
             get => _data.UserPreferencesData.ActiveMineIndex;
             set => _data.UserPreferencesData.ActiveMineIndex = value;
         }
-        
-        public MineData ActiveMineData
-        {
-            get
-            {
-                if (ActiveMineIndex >= _data.MineDataList.Count)
-                    ActiveMineIndex = 0;
-                return _data.MineDataList[ActiveMineIndex];
-            }
-        }
-        
+
+        public MineData ActiveMineData => _data.MineDataList[ActiveMineIndex];
+
+
         public GameData(GameConfig gameConfig)
         {
             _gameConfig = gameConfig;
@@ -45,17 +38,31 @@ namespace GameCode.DataPersistence
             _gameConfig = gameConfig;
 
             // If given data is invalid
-            if (data == null || data.MineDataList == null || data.MineDataList.Count == 0)
+            if (_data == null || _data.MineDataList == null || _data.MineDataList.Count == 0)
             {
+                Debug.Log("Given save data is invalid. Creating a new one.");
                 CreateData();
             }
             // If new mines added to the game
-            else if (data.MineDataList.Count > _gameConfig.MineConfigs.Count)
+            else if (_gameConfig.MineConfigs.Count > _data.MineDataList.Count)
             {
+                Debug.Log("New mines added to the game.\n Save data is updating.");
                 int startIndex = _data.MineDataList.Count;
                 for (var i = startIndex; i < _gameConfig.MineConfigs.Count; i++)
                 {
                     _data.MineDataList.Add(CreateMineData(i));
+                }
+            }
+            // If save file has more mine than it should be
+            else if (_data.MineDataList.Count > _gameConfig.MineConfigs.Count)
+            {
+                Debug.Log($"Save data has more mine than it should be.\n" +
+                          $"Removing the extra mines.");
+
+                int startIndex = _data.MineDataList.Count - 1;
+                for (var i = startIndex; i >= _gameConfig.MineConfigs.Count; i--)
+                {
+                    _data.MineDataList.RemoveAt(i);
                 }
             }
         }
@@ -65,7 +72,6 @@ namespace GameCode.DataPersistence
         /// </summary>
         private void CreateData()
         {
-            var activeMineIndex = 0;
             var mineDataList = new List<MineData>();
             for (var i = 0; i < _gameConfig.MineConfigs.Count; i++)
             {
@@ -74,12 +80,12 @@ namespace GameCode.DataPersistence
             _data = new Data()
             {
                 MineDataList = mineDataList,
-                UserPreferencesData = new UserPreferencesData() { ActiveMineIndex = activeMineIndex }
+                UserPreferencesData = new UserPreferencesData() { ActiveMineIndex = 0 }
             };
         }
         
         /// <summary>
-        /// Create a deep copy of mine data via game config
+        /// Create a deep copy of mine data using starting mine data from game config
         /// </summary>
         private MineData CreateMineData(int mineConfigIndex)
         {

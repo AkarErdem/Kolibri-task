@@ -1,8 +1,11 @@
+using System;
+
 namespace GameCode.DataPersistence
 {
     public interface ISaveModel
     {
-        public GameData GameData { get; }
+        GameData GameData { get; }
+        event Action<GameData> AfterOnSaveCalled;
         void RegisterSaveable(ISaveable saveable);
         void SaveGame();
         void LoadGame();

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameCode.Init;
+using System;
 
 namespace GameCode.DataPersistence
 {
@@ -11,6 +12,8 @@ namespace GameCode.DataPersistence
         
         private GameData _gameData;
         private List<ISaveable> _saveableObjects;
+
+        public event Action<GameData> AfterOnSaveCalled;
 
         public GameData GameData => _gameData;
 
@@ -56,6 +59,10 @@ namespace GameCode.DataPersistence
             {
                 dataPersistenceObj.OnSave(ref this._gameData);
             }
+            
+            // Invoke the AfterOnSaveCalled event
+            AfterOnSaveCalled?.Invoke(this._gameData);
+
             // Save that data to a file using the data handler
             _fileDataHandler.Save(this._gameData.Data);
         }

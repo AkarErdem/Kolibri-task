@@ -11,30 +11,48 @@ namespace GameCode.Init
     {
         [Header("Configuration")]
         [SerializeField] private List<MineConfig> _mineConfigs;
-        private int _activeMineConfigIndex;
+        private int _mineConfigIndex;
         
         [Header("Save Data")]
         [SerializeField] private bool _encryptDataFile;
         [SerializeField] private string _dataFileName;
-        
-        public MineData StartingMineData => _mineConfigs[_activeMineConfigIndex].StartingMineData;
+
+        public int MineConfigIndex
+        {
+            get => _mineConfigIndex;
+            set => _mineConfigIndex = value;
+        }
+
+        public MineData StartingMineData => _mineConfigs[_mineConfigIndex].StartingMineData;
         public List<MineConfig> MineConfigs => _mineConfigs;
         
-        public int ActiveMineConfigIndex => _activeMineConfigIndex;
         public bool EncryptDataFile => _encryptDataFile;
         public string DataFileName => _dataFileName;
         public string DataDirPath => Application.persistentDataPath;
         
-        public IMineshaftConfig MineshaftConfig => _mineConfigs[_activeMineConfigIndex].MineshaftConfig;
-        public IWorkerConfig MineshaftWorkerConfig => _mineConfigs[_activeMineConfigIndex].MineshaftWorkerConfig;
-        public IWorkerConfig ElevatorWorkerConfig => _mineConfigs[_activeMineConfigIndex].ElevatorWorkerConfig;
-        public IWorkerConfig WarehouseWorkerConfig => _mineConfigs[_activeMineConfigIndex].WarehouseWorkerConfig;
+        public string MineName => _mineConfigs[_mineConfigIndex].MineName;
+
+        public IMineshaftConfig MineshaftConfig => _mineConfigs[_mineConfigIndex].MineshaftConfig;
+        public IWorkerConfig MineshaftWorkerConfig => _mineConfigs[_mineConfigIndex].MineshaftWorkerConfig;
+        public IWorkerConfig ElevatorWorkerConfig => _mineConfigs[_mineConfigIndex].ElevatorWorkerConfig;
+        public IWorkerConfig WarehouseWorkerConfig => _mineConfigs[_mineConfigIndex].WarehouseWorkerConfig;
         
-        public float ActorUpgradePriceIncrement => _mineConfigs[_activeMineConfigIndex].ActorUpgradePriceIncrement;
-        public float ActorUpgradeSkillIncrement => _mineConfigs[_activeMineConfigIndex].ActorUpgradeSkillIncrement;
-        public float ActorPriceIncrementPerShaft => _mineConfigs[_activeMineConfigIndex].ActorPriceIncrementPerShaft;
-        public float ActorSkillIncrementPerShaft => _mineConfigs[_activeMineConfigIndex].ActorSkillIncrementPerShaft;
-        
+        public float ActorUpgradePriceIncrement => _mineConfigs[_mineConfigIndex].ActorUpgradePriceIncrement;
+        public float ActorUpgradeSkillIncrement => _mineConfigs[_mineConfigIndex].ActorUpgradeSkillIncrement;
+        public float ActorPriceIncrementPerShaft => _mineConfigs[_mineConfigIndex].ActorPriceIncrementPerShaft;
+        public float ActorSkillIncrementPerShaft => _mineConfigs[_mineConfigIndex].ActorSkillIncrementPerShaft;
+
+
+        [System.Diagnostics.Conditional("UNITY_EDITOR")]
+        [EditorCools.Button(name: "Set Mine Names")]
+        private void SetMineNames()
+        {
+            for (int i = 0; i < _mineConfigs.Count; i++)
+            {
+                _mineConfigs[i].MineName = $"Mine {i+1}";
+            }
+        }
+
         [System.Diagnostics.Conditional("UNITY_EDITOR")]
         [EditorCools.Button(name: "Show Data Directory Path")]
         private void ShowDataDirPath() => UnityEditor.EditorUtility.RevealInFinder($"{DataDirPath}");
@@ -46,7 +64,7 @@ namespace GameCode.Init
         [Header("Info")] 
         public string MineName;
         public string MineDescription;
-        
+
         [Header("Config")]
         public MineshaftConfig MineshaftConfig;
         public WorkerConfig MineshaftWorkerConfig;
