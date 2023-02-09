@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Scripts\GameCode\Tutorial\TutorialModel.cs" />
-    <Compile Include="Assets\_Scripts\GameCode\SceneManagement\ISceneLoaderModel.cs" />
+    <Compile Include="Assets\_Scripts\GameCode\SceneManagement\ISceneLoader.cs" />
     <Compile Include="Assets\_Scripts\GameCode\CameraRig\CameraController.cs" />
     <Compile Include="Assets\_Scripts\GameCode\Warehouse\WarehouseWorkerController.cs" />
     <Compile Include="Assets\_Scripts\GameCode\GameArea\AreaUiCanvasView.cs" />

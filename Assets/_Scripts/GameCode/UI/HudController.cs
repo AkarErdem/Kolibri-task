@@ -14,7 +14,7 @@ namespace GameCode.UI
         private readonly HudModel _model;
 
         public HudController(HudModel model, HudView view, GameConfig gameConfig, FinanceModel financeModel, 
-            ITutorialModel tutorialModel, ISceneLoaderModel sceneLoaderModel, CompositeDisposable disposable)
+            ITutorialModel tutorialModel, ISceneLoader sceneLoader, CompositeDisposable disposable)
         {
             _model = model;
             _view = view;
@@ -29,7 +29,7 @@ namespace GameCode.UI
                 .Subscribe(UpdateTooltipVisibility)
                 .AddTo(disposable);
 
-            sceneLoaderModel.IsLoading
+            sceneLoader.IsLoading
                 .Subscribe(UpdateLoadingScreenVisibility)
                 .AddTo(disposable);
 

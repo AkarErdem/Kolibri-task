@@ -1,9 +1,8 @@
-using System.Collections;
 using UniRx;
 
 namespace GameCode.SceneManagement
 {
-    public interface ISceneLoaderModel
+    public interface ISceneLoader
     {
         IReactiveProperty<bool> IsLoading { get; }
         void LoadScene(string sceneName);

@@ -10,16 +10,16 @@ namespace GameCode.UI
     public class HudModel
     {
         private readonly ISaveModel _saveModel;
-        private readonly ISceneLoaderModel _sceneLoaderModel;
+        private readonly ISceneLoader _sceneLoader;
         private readonly GameConfig _gameConfig;
         private Vector3 mineSelectionPanelStartingPosition;
         private int _mineConfigIndex;
 
-        public HudModel(GameConfig gameConfig, ISceneLoaderModel sceneLoaderModel, ISaveModel saveModel)
+        public HudModel(GameConfig gameConfig, ISceneLoader sceneLoader, ISaveModel saveModel)
         {
             this._gameConfig = gameConfig;
             this._saveModel = saveModel;
-            this._sceneLoaderModel = sceneLoaderModel;
+            this._sceneLoader = sceneLoader;
 
             this._mineConfigIndex = gameConfig.MineConfigIndex;
             saveModel.SaveGame();
@@ -100,7 +100,7 @@ namespace GameCode.UI
         {
             _mineConfigIndex = mineIndex;
             _saveModel.SaveGame();
-            _sceneLoaderModel.ReloadScene();
+            _sceneLoader.ReloadScene();
         }
 
         private void UpdateTransformVisibility(Transform transform, bool value)

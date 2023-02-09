@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 1058360895}
   - component: {fileID: 1058360894}
   m_Layer: 5
-  m_Name: txt_header
+  m_Name: txt_mine_selection_header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1423,7 +1423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3140084497135820052}
   m_Layer: 5
-  m_Name: panel_main
+  m_Name: page_root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

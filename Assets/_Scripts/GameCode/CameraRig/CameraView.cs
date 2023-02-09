@@ -7,11 +7,9 @@ namespace GameCode.CameraRig
         [SerializeField] private Camera _camera;
         [SerializeField] private Transform _transform;
         [SerializeField] private CameraOffset _cameraOffset;
-        [SerializeField] private float _verticalOffsetPerPixel;
         [SerializeField] private float _speed;
         [SerializeField] private float _tooltipDelay;
         [SerializeField] private float _referenceScreenHeight;
-        [SerializeField] private float _referenceScreenWidth;
         
         public Camera Camera => _camera;
 

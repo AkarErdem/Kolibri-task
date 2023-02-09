@@ -6,7 +6,7 @@ using UniRx;
 
 namespace GameCode.SceneManagement
 {
-    public class SceneLoaderModel : ISceneLoaderModel
+    public class SceneLoaderModel : ISceneLoader
     {
         private readonly GameConfig _gameConfig;
 
