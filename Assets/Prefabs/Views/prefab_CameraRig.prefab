@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6487208576409601092}
   - component: {fileID: 6487208576409601095}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.864166
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -140,9 +140,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 6487208576409601093}
   _transform: {fileID: 6487208576873296772}
-  _verticalLimit: {x: -60, y: 0}
+  _cameraOffset:
+    Up: {x: 0, y: 0}
+    Down: {x: 0, y: -60}
   _verticalOffsetPerPixel: 66.25
   _speed: 20
   _tooltipDelay: 3
-  referenceScreenHeight: 1334
-  referenceScreenWidth: 750
+  _referenceScreenHeight: 1334
+  _referenceScreenWidth: 750

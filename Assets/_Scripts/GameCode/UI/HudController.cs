@@ -53,10 +53,13 @@ namespace GameCode.UI
                 MineConfig mineConfig = gameConfig.MineConfigs[i];
 
                 var mineIndex = i;
-                var mineSelectionElementView = Object.Instantiate(view.MineSelectionView.MineSelectionElementViewPrefab, view.MineSelectionView.ElementsParent);
+                var mineSelectionElementView = Object.Instantiate(
+                    view.MineSelectionView.MineSelectionElementViewPrefab, 
+                    view.MineSelectionView.ElementsParent);
+
                 mineSelectionElementView.Name = mineConfig.MineName;
                 mineSelectionElementView.Description = mineConfig.MineDescription;
-                mineSelectionElementView.SwitchMineButton.interactable = gameConfig.MineConfigIndex != i;
+                mineSelectionElementView.SwitchMineButton.interactable = gameConfig.MineConfigIndex != mineIndex;
                 mineSelectionElementView.SwitchMineButton
                     .OnClickAsObservable()
                     .Subscribe(_ =>
@@ -86,9 +89,7 @@ namespace GameCode.UI
 
         private void UpdateLoadingScreenVisibility(bool shouldShowLoadingScreen)
         {
-            _view.LoadingScreen.enabled = shouldShowLoadingScreen;
+            _model.UpdateLoadingScreenVisibility(_view.LoadingScreen, shouldShowLoadingScreen);
         }
-
-        
     }
 }

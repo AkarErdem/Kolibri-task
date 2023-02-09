@@ -15,6 +15,7 @@ namespace GameCode.CameraRig
         {
             _view = view;
             _tutorialModel = tutorialModel;
+
             view.UpdateAsObservable()
                 .Subscribe(_ => OnUpdate())
                 .AddTo(view);
@@ -33,10 +34,33 @@ namespace GameCode.CameraRig
 
                 var yPosition = _view.Position.y;
                 yPosition += yInput * _view.Speed * Time.deltaTime;
-                yPosition = Mathf.Clamp(yPosition, _view.VerticalLimit.x, _view.VerticalLimit.y);
-
+                yPosition = Mathf.Clamp(yPosition, _view.CameraOffset.Down.y, _view.CameraOffset.Up.y);
+                
                 _view.Position = new Vector2(0, yPosition);
             }
+            SetOrthographicSize();
+        }
+
+        private void SetOrthographicSize()
+        {
+            float currentAspect = (float)Screen.width / Screen.height;
+
+            float minSize = 4f;
+            float orthographicSize;
+            if (currentAspect > .5f) // .5f -> 13.4 orthographic size by default
+            {
+                orthographicSize = 13.4f - Mathf.Abs((currentAspect - .5f) * 2f);
+            }
+            else
+            {
+                orthographicSize = (_view.ReferenceScreenHeight / currentAspect) / 200;
+            }
+
+            if (orthographicSize < minSize)
+            {
+                orthographicSize = minSize;
+            }
+            _view.Camera.orthographicSize = orthographicSize;
         }
 
         private IEnumerator DisableTooltip()

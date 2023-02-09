@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mineConfigs:
   - MineName: Mine 1
-    MineDescription: The first mine!
+    MineDescription: This is your first mine in which you can start of your tycoon
+      journey!
     MineshaftConfig: {fileID: 11400000, guid: 5539b827b23a6964999cb4e52b988340, type: 2}
     MineshaftWorkerConfig: {fileID: 11400000, guid: 15f2906efcac83b47805f8f29f42e8cb,
       type: 2}
@@ -75,5 +76,8 @@ MonoBehaviour:
         StashAmount: 0
         Worker:
           CarryingAmount: 0
-  _encryptDataFile: 1
+  _sceneLoadCooldownTime: 0.4
+  _mineConfigIndex: 0
+  _encryptDataFile: 0
+  _encryptionCodeWord: Kolibri123
   _dataFileName: game.savedata

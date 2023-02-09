@@ -41,7 +41,13 @@ namespace GameCode.DataPersistence
                             dataToLoad = reader.ReadToEnd();
                         }
                     }
-                    
+
+                    // Optionally decrypt the data
+                    if (_gameConfig.EncryptDataFile)
+                    {
+                        dataToLoad = EncryptDecrypt(dataToLoad);
+                    }
+
                     // Deserialize the data from Json back into the C# object
                     data = new GameData(_gameConfig, JsonConvert.DeserializeObject<Data>(dataToLoad)).Data;
                 }
@@ -67,6 +73,12 @@ namespace GameCode.DataPersistence
                 // Serialize the C# game data object into Json
                 string dataToSave = JsonConvert.SerializeObject(data, Formatting.Indented);
                 
+                // Optionally encrypt the data
+                if (_gameConfig.EncryptDataFile)
+                {
+                    dataToSave = EncryptDecrypt(dataToSave);
+                }
+
                 // Write the serialized data to the file
                 using(var stream = new FileStream(fullPath, FileMode.Create))
                 {
@@ -80,6 +92,22 @@ namespace GameCode.DataPersistence
             {
                 Debug.LogError($"Error occured when trying to save data to file: {fullPath}\n{e.Message}");
             }
+        }
+
+        /// <summary>
+        /// Simple implementation of XOR encryption
+        /// </summary>
+        private string EncryptDecrypt(string data)
+        {
+            string encryptionCodeWord = _gameConfig.EncryptionCodeWord;
+            string modifiedData = string.Empty;
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                modifiedData += (char)(data[i] ^ encryptionCodeWord[i % encryptionCodeWord.Length]);
+            }
+
+            return modifiedData;
         }
     }
 }

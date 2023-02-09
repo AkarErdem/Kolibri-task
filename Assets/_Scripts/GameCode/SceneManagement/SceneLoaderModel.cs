@@ -1,15 +1,20 @@
+using GameCode.Init;
 using System.Collections;
-using UniRx;
 using UnityEngine.SceneManagement;
+using UnityEngine;
+using UniRx;
 
 namespace GameCode.SceneManagement
 {
     public class SceneLoaderModel : ISceneLoaderModel
     {
+        private readonly GameConfig _gameConfig;
+
         public IReactiveProperty<bool> IsLoading { get; }
         
-        public SceneLoaderModel()
+        public SceneLoaderModel(GameConfig gameConfig)
         {
+            _gameConfig = gameConfig;
             IsLoading = new ReactiveProperty<bool>(false);
         }
 
@@ -35,9 +40,21 @@ namespace GameCode.SceneManagement
             }
 
             IsLoading.Value = true;
+
+            var time = Time.time;
             var asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
+            //Don't let the Scene activate until you allow it to
+            asyncLoad.allowSceneActivation = false;
+
+            // Wait until the timer ends
+            while (Time.time - time < _gameConfig.SceneLoadCooldownTime)
+            {
+                yield return null;
+            }
+
             // Wait until the asynchronous scene fully loads
+            asyncLoad.allowSceneActivation = true;
             while (!asyncLoad.isDone)
             {
                 yield return null;

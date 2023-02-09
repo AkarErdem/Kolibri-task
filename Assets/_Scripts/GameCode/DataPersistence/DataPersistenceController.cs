@@ -8,12 +8,10 @@ namespace GameCode.DataPersistence
     public class DataPersistenceController
     {
         private readonly ISaveModel _model;
-        private readonly ISceneLoaderModel _sceneLoaderModel;
 
-        public DataPersistenceController(GameConfig gameConfig, ISaveModel model, ISceneLoaderModel sceneLoaderModel, CompositeDisposable disposable)
+        public DataPersistenceController(GameConfig gameConfig, ISaveModel model, CompositeDisposable disposable)
         {
             _model = model;
-            _sceneLoaderModel = sceneLoaderModel;
             
             Observable.OnceApplicationQuit()
                 .Subscribe(_ => SaveGame())

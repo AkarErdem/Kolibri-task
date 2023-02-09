@@ -35,12 +35,13 @@ namespace GameCode.Mineshaft
                 var lastPair = _mvcCollection.GetViews().LastOrDefault();
                 mineshaftNumber = lastPair.Key + 1;
                 mineshaftPosition = lastPair.Value.NextShaftView.NextShaftPosition;
+                lastPair.Value.NextShaftView.Visible = false;
             }
-            
+
             var mineshaftModel = new MineshaftModel(creationData, mineshaftNumber, _config, _financeModel, _disposable);
             var mineshaftView = Object.Instantiate(_config.MineshaftConfig.MineshaftPrefab, mineshaftPosition, Quaternion.identity);
             var mineshaftController = new MineshaftController(creationData, mineshaftView, mineshaftModel, this, _config, _disposable);
-            
+
             _mvcCollection.Register(mineshaftNumber, mineshaftModel, mineshaftView, mineshaftController);
         }
         

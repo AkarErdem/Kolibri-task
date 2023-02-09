@@ -29,20 +29,20 @@ namespace GameCode.Init
             // Tutorial
             var tutorialModel = new TutorialModel();
 
-            // SceneHandler
-            var sceneHandlerModel = new SceneLoaderModel();
-
             // Camera
             new CameraController(_cameraView, tutorialModel);
 
             // File Data Handler
             var fileDataHandler = new FileDataHandlerModel(_gameConfig);
 
+            // Scene Handler
+            var sceneHandlerModel = new SceneLoaderModel(_gameConfig);
+
             // Data Persistence
             var saveModel = new DataPersistenceModel(_gameConfig, fileDataHandler);
-            new DataPersistenceController(_gameConfig, saveModel, sceneHandlerModel, disposable);
+            new DataPersistenceController(_gameConfig, saveModel, disposable);
             
-            // Receive GameData -> ActiveMineData
+            // Mine Data
             var activeMineData = saveModel.GameData.ActiveMineData;
             
             // Finance
@@ -62,7 +62,7 @@ namespace GameCode.Init
             new WarehouseController(activeMineData.WarehouseCreationData, _warehouseView, warehouseModel, elevatorModel, _gameConfig, disposable, saveModel);
 
             // Hud
-            var hudModel = new HudModel(sceneHandlerModel, saveModel);
+            var hudModel = new HudModel(_gameConfig, sceneHandlerModel, saveModel);
             new HudController(hudModel, _hudView, _gameConfig, financeModel, tutorialModel, sceneHandlerModel, disposable);
         }
     }
