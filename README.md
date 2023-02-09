@@ -58,7 +58,7 @@ In this folder, we have the scripts below:
 * DataPersistenceController: Implements ways to save data using `ISaveModel` and UniRX. For example: saves the game on application quit using UniRX. Also loads the game save on the constructor.
 
 ### Game Initializer
-On the GameInitializer, I have added our newly implemented scripts and injected save data to the required scripts. This way I was able to save everything! I saved workers' positions, stashes, upgrades, and player money and last entered mine. 
+On the GameInitializer, I have added our newly implemented scripts and injected save data to the required scripts. This way I was able to save everything! I saved workers' positions, stashes, upgrades, unlocked mine shafts, player money and last entered mine. 
 
 ### Scene Loader
 A custom interface, ISceneLoader, was created to manage scene loading exclusively. This interface includes methods for loading and reloading scenes, as well as an `IsLoading` reactive property. The loading screen is activated through the use of UniRX on the HudController whenever the `IsLoading` property triggers.
