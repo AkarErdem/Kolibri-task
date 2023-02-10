@@ -370,7 +370,7 @@
 "Assets/_Scripts/GameCode/Mineshaft/MineshaftView.cs"
 "Assets/_Scripts/GameCode/Mineshaft/MineshaftWorkerController.cs"
 "Assets/_Scripts/GameCode/Mineshaft/NextMineShaftView.cs"
-"Assets/_Scripts/GameCode/SceneManagement/ISceneLoaderModel.cs"
+"Assets/_Scripts/GameCode/SceneManagement/ISceneLoader.cs"
 "Assets/_Scripts/GameCode/SceneManagement/SceneLoaderModel.cs"
 "Assets/_Scripts/GameCode/Tutorial/ITutorialModel.cs"
 "Assets/_Scripts/GameCode/Tutorial/TutorialModel.cs"

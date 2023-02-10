@@ -83,7 +83,6 @@ MonoBehaviour:
           CarryingAmount: 0
           LocalPosition: {x: -0.85, y: -1.04}
   _sceneLoadCooldownTime: 0.4
-  _mineConfigIndex: 0
-  _encryptDataFile: 1
+  _encryptDataFile: 0
   _encryptionCodeWord: Kolibri123
   _dataFileName: game.savedata

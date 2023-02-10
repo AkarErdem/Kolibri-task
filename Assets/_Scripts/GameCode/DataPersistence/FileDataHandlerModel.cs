@@ -53,7 +53,7 @@ namespace GameCode.DataPersistence
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError($"Error occured when trying to load data from file: {fullPath}\n{e.Message}");
+                    Debug.LogWarning($"Error occured when trying to load data from file: {fullPath}\n{e.Message}");
                 }
             }
 
