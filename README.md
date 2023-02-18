@@ -67,8 +67,3 @@ A custom interface, ISceneLoader, was created to manage scene loading exclusivel
 To facilitate mine-specific configurations, variables were organized into a class called `MineConfig` within the Game Config. Default starting values, such as 500 gold, were added to provide players with a consistent starting experience. Additionally, an XOR (Exclusive Or) encryption-decryption system was implemented to secure JSON files, with the option to enable or disable this feature through the Game Config.
 
 The Game Config also includes two useful buttons: `SetMineNames`, which sets all mine names based on their index, and `ShowDataDirectoryPath`, which opens the saved data location for easy access.
-
-## Conclusion
-I hope this solution meets the requirements for the task and demonstrates my understanding of game development and programming concepts. If you have any questions or feedback, please let me know.
-
-Erdem Akar
